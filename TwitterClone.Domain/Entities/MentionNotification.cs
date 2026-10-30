@@ -1,4 +1,4 @@
-namespace TwitterCLone.Domain.Entities
+namespace TwitterClone.Domain.Entities
 {
     public class MentionNotification : Notification{
 

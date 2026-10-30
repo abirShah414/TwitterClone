@@ -1,6 +1,6 @@
 namespace TwitterClone.Domain.Entities
 {
-    public class Tweet : BaseEntity
+    public class Tweet : BaseEntity,ILikeable
     {
         public const int MaxLength = 280;
         private Guid _authorId;
@@ -30,6 +30,11 @@ namespace TwitterClone.Domain.Entities
                 }
                 _content = value;
             }
+        }
+
+        public bool CanBeLiked()
+        {
+            return true;
         }
     }
 }

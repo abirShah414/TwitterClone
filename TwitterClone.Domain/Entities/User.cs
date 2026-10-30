@@ -1,6 +1,6 @@
 ﻿namespace TwitterClone.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User : BaseEntity,IFollowable,INotifiable
     {
         private string _username;
         private string _email;
@@ -32,6 +32,33 @@
                     throw new ArgumentException("Email cannot be empty");
                 } 
                 _email = value; }
+        }
+
+        private List<Guid> _followers = new List<Guid>();
+        private List<Guid> _inComingNotifications = new List<Guid>();
+
+        public void Follow(Guid userId)
+        {
+            if(!_followers.Contains(userId))
+            {
+                _followers.Add(userId);
+            }
+        }
+
+        public void Unfollow(Guid userId)
+        {
+            if (_followers.Contains(userId))
+            {
+                _followers.Remove(userId);
+            }
+        }
+
+        public void AddNotification(Guid notificationId)
+        {
+            if(!_inComingNotifications.Contains(notificationId))
+            {
+                _inComingNotifications.Add(notificationId);
+            }
         }
     }
 }
